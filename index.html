@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Wikipedia Viewer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fdaciuk-ajax/2.3.0/ajax.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>Grab an Article</h1>
+    <div class="box">
+      <div class="container">
+        <span class="icon">
+          <i class="fa fa-search fa"></i>
+        </span>
+        <input type="search" id="search" placeholder="Search..." value="" />
+      </div>
+    </div>
+    <div id="articles">
+
+    </div>
+    <button id="rando">Rando Wiki</button>
+  </div>
+  <!--   <script>function keyWasPressed(evt){ console.log(evt.keyCode) }</script> -->
+  <script src="app.js"></script>
+</body>
+
+</html>
