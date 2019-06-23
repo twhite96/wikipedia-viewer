@@ -40,6 +40,16 @@ h1 {
   color: #35434D;
 }
 
+input#reset {
+  padding: 8px 20px;
+  border-radius: 4px;
+  background-color: #FF628C;
+  border-color: #FF628C;
+  margin-left: 35px;
+  margin-top: 65px;
+  color: #efefef;
+}
+
 .container {
   width: 300px;
   vertical-align: middle;
