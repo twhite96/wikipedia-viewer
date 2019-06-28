@@ -20,6 +20,10 @@ function getArticles() {
   input.addEventListener('keyup', instantSearch);
 }
 
+// checkout the jQuery on master branch
+// Instead of the html jQuery function we could use
+// document.getElementById("some id").appendChild('some html')
+
 const clearInput = () => {
   document.getElementById('search').value = null;
 }
