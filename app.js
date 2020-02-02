@@ -1,34 +1,45 @@
-function getArticles() {
-  // Can't use let here and even var won't work; its scoped to this block
-  // May need query to be global for now
-  let query = '';
-  let url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrsearch=' + `${query}` + '&gsrlimit=5&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max';
-  const input = document.querySelector('input');
-  const search = document.getElementById('search');
+const searchInput = document.getElementById('search');
+const results = document.getElementById('articles');
 
-  // Function is alllll kinds of wrong here
-  // Why async await here?
-  async function instantSearch(event) {
-    // This is wrong
-    query = search.value;
-    search.textContent += `${event.code}`;
-    console.log(json);
-    // You're fetching a URL that is assigned to and scoped to
-    // another function Fix this!
-    return await fetch(url).then(response => response.json());
+let query = '';
+
+let articles;
+
+let fetchArticles;
+
+
+fetchArticles = async () => {
+  articles = await fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch', {
   }
-  input.addEventListener('keyup', instantSearch);
+  ).then(res => res.json())
+};
+
+
+const showArticles = async () => {
+  results.innerHTML = '';
+
+  await fetchArticles();
+
+  const ul = document.createElement('ul');
+  ul.classList.add('content');
+
+  articles.forEach(article => {
+    const li = document.createElement('li');
+    const url = document.createElement('a');
+    li.classList.add('content');
+    url.classList.add('url');
+    li.appendChild
+  })
 }
 
-// checkout the jQuery on master branch
-// Instead of the html jQuery function we could use
-// document.getElementById("some id").appendChild('some html')
+fetchArticles();
 
-const clearInput = () => {
-  document.getElementById('search').value = null;
-}
 
-getArticles();
+searchInput.addEventListener('input', e => {
+  query = e.target.value;
+  fetchArticles();
+});
+
 
 function pullRandoArticle() {
   var getRando = document.getElementById("rando");
@@ -37,3 +48,7 @@ function pullRandoArticle() {
   });
 }
 pullRandoArticle();
+
+const clearInput = () => {
+  document.getElementById('search').value = null;
+}

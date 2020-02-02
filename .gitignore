@@ -1,3 +1,5 @@
 # Ignore CNAME file
 
 CNAME
+
+.vscode

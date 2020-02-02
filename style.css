@@ -105,12 +105,12 @@ input#reset {
   color: #93a2ad;
 }
 
-#content:hover {
+.content:hover {
   border-top: solid 15px orange;
   cursor: pointer;
 }
 
-#content {
+.content {
   background: #f6f6f6;
   width: 95%;
   height: 100%;
@@ -122,6 +122,6 @@ input#reset {
   padding-left: 10px;
 }
 
-a {
+.url {
   color: #009688;
 }
