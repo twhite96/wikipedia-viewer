@@ -56,7 +56,9 @@ function getArticles() {
   // Can't use let here and even var won't work; its scoped to this block
   // May need query to be global for now
   let query = '';
-  let url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrsearch=' + `${query}` + '&gsrlimit=5&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max';
+  let url = '/* API */
+  `${query}` +
+  '/* end of query string */';
   const input = document.querySelector('input');
   const search = document.getElementById('search');
 
