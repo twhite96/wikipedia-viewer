@@ -4,7 +4,7 @@
 
 
  [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) &nbsp; &nbsp; [![forthebadge](https://forthebadge.com/images/badges/designed-in-etch-a-sketch.svg)](https://forthebadge.com) &nbsp; &nbsp;
- [![Shields](https://img.shields.io/badge/Status-WIP-%2306d7d9)](https://img.shields.io/badge/Status-WIP-%2306d7d9)
+ [![Shields](https://img.shields.io/badge/Status-WIP-%2306d7d9?style=for-the-badge&logo=appveyor)](https://img.shields.io/badge/Status-WIP-%2306d7d9?style=for-the-badge&logo=appveyor)
 
 
 ## 👆 First Iteration
