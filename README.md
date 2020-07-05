@@ -19,9 +19,9 @@ $(document).ready(function () {
   $("#search").keyup(function () {
     query = $("#search").val();
     url =
-      "https://en.wikipedia.org/w/api.php?action=opensearch&search=" +
+      "/* API */ +
       query +
-      "&format=json&callback=?";
+      "/* end query string */";
     $.getJSON(url, function (data) {
       $("#articles").html("");
       for (i = 0; i < data[1].length; i++) {
@@ -53,10 +53,14 @@ For instance, this:
 ```js
 
 function getArticles() {
-  // Can't use let here and even var won't work; its scoped to this block
+  // Can't use let here and even 
+  //var won't work; 
+  // its scoped to this block
   // May need query to be global for now
   let query = '';
-  let url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrsearch=' + `${query}` + '&gsrlimit=5&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max';
+  let url = '/* API */
+  `${query}` +
+  '/* end of query string */';
   const input = document.querySelector('input');
   const search = document.getElementById('search');
 
@@ -69,13 +73,16 @@ function getArticles() {
     console.log(json);
     // You're fetching a URL that is assigned to and scoped to
     // another function Fix this!
-    return await fetch(url).then(response => response.json());
+    return await fetch(url)
+    .then(response => response.json());
   }
   input.addEventListener('keyup', instantSearch);
 }
 
-// checkout the jQuery on master branch
-// Instead of the html jQuery function we could use
+// checkout the jQuery 
+// on master branch
+// Instead of the html 
+// jQuery function we could use
 // document.getElementById("some id").appendChild('some html')
 
 const clearInput = () => {
