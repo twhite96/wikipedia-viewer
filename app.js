@@ -1,45 +1,35 @@
-// Code found on JSFiddle, refactored by me.
+/* Ripped all that copied code out, this is my stuff, by me.
+Copying code is a quick and dirty way to get something going but if you don't understand why it works
+why use it? This is my attempt at refactoring my wikipedia viewer to use modern web APIs */
 
-let handleSubmit = () => {
-  // get the value of the input field
-  const input = document.getElementById('search').value;
-  fetchResults(searchQuery);
+// I need to target the input field in order for the oninput event handler to fire correctly.
+let input = document.querySelector('input');
+let query = document.getElementById('search').value;
+
+// Since I will be typing in the input field and I want
+// The text to be displayed while typing, I assigned the input variable
+// to this nifty `oninput` event handler: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oninput
+input.oninput = handleInput;
+// console.log(displayResults());
+
+// Here we can handle the event and display the query or search term with `handleInput` passing in the event, e
+// and assigning its value to target.value
+// This will display the value of the input, ie strings, to whatever container/form we have.
+// The issue now is handling the event when we get a response back from the Fetch API.
+// Want to move this handler inside the fetch call? Is that what it is?
+// Struggling with what pattern to use.
+function handleInput(e) {
+   query.textContent = e.target.value;
 }
-
-let fetchResults = (searchQuery) => {
-  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchQuery}`;
+let fetchResults = (handleInput) => {
+  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${handleInput}`;
   fetch(endpoint)
   .then(response => response.json())
   .then(data => {
     const results = data.query.search;
-    displayResults(results);
   })
   .catch(() => console.log('An error occurred'));
 }
-
-let displayResults = (results) => {
-  // Store a reference to `articles`
-  const searchResults = document.getElementById('articles');
-  // Remove all child elements
-  searchResults.innerHTML = '';
-  // Loop over results array
-  results.forEach(result => {
-    const url = encodeURI(`https://en.wikipedia.org/wiki/${result.title}`);
-    // textContent, innerHTML, or innerText? I don't need `insertAdjacentHTML` as it is unsafe.
-    articles.insertAdjacentHTML('beforeend',
-    `<div id="container">
-    <a class="url" href="${url}" target="_blank" rel="noopener">${result.title}</a>
-    </h3>
-    <span class="resultItem-snippet">${result.snippet}</span><br>
-    <a href="${url}" class="resultItem-link" target="_blank" rel="noopener">${url}</a>
-    </div>`
-    );
-  });
-}
-
-const form = document.getElementById('search');
-form.addEventListener('submit', handleSubmit);
-
 
 const pullRandoArticle = () => {
     const getRando = document.getElementById("rando");
