@@ -4,7 +4,7 @@ why use it? This is my attempt at refactoring my wikipedia viewer to use modern 
 
 // I need to target the input field in order for the oninput event handler to fire correctly.
 let input = document.querySelector('input');
-let query = document.getElementById('search').value;
+// let query = document.getElementById('search');
 
 // Since I will be typing in the input field and I want
 // The text to be displayed while typing, I assigned the input variable
@@ -26,7 +26,8 @@ let fetchResults = (handleInput) => {
   fetch(endpoint)
   .then(response => response.json())
   .then(data => {
-    const results = data.query.search;
+    const results = data.input.search;
+    results.JSONParse()
   })
   .catch(() => console.log('An error occurred'));
 }
