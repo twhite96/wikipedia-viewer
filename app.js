@@ -1,65 +1,45 @@
-// function getArticles() {
-//   var query = "";
-//   var content = [];
-//   query = document.getElementById("search").value;
-// fetch("https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrsearch=" +
-//     query + "&gsrlimit=5&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max")
-//     .then(function(resp) {
-//       console.log(resp);
-//       return resp.json();
-//     })
-//     .then(function(data) {
-//       console.log(data);
-//     });
-//   var ul = document.createElement("ul");
-//   document.querySelector("articles").appendChild(ul);
-//   content.forEach(renderArticles);
+/* Ripped all that copied code out, this is my stuff, by me.
+Copying code is a quick and dirty way to get something going but if you don't understand why it works
+why use it? This is my attempt at refactoring my wikipedia viewer to use modern web APIs */
 
-//   function renderArticles(element, index, arr) {
-//     var li = document.createElement("li");
-//     li.setAttribute("class", "item");
-//     ul.appendChild(li);
-//     li.innerHTML = li.innerHTML + element;
+// I need to target the input field in order for the oninput event handler to fire correctly.
+let input = document.querySelector('input');
+// let query = document.getElementById('search');
 
-//     var keyWasPressed = document.querySelectorAll(".icon");
+// Since I will be typing in the input field and I want
+// The text to be displayed while typing, I assigned the input variable
+// to this nifty `oninput` event handler: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/oninput
+input.oninput = handleInput;
+// console.log(displayResults());
 
-//     keyWasPressed[0].addEventListener("keyup", function() {
-//       getArticles();
-//     });
-//   }
-
-$(document).ready(function () {
-  var query = "";
-  var url = "";
-
-  $("#search").keyup(function () {
-    query = $("#search").val();
-    url =
-      "https://en.wikipedia.org/w/api.php?action=opensearch&search=" +
-      query +
-      "&format=json&callback=?";
-    $.getJSON(url, function (data) {
-      $("#articles").html("");
-      for (i = 0; i < data[1].length; i++) {
-        $("#articles").append(
-          "<div id=content><a href=" +
-          data[3][i] +
-          " ><h2>" +
-          data[1][i] +
-          "</h2><p>" +
-          data[2][i] +
-          "</p></a></div>"
-        );
-      }
-    });
-  });
-});
-
-function pullRandoArticle() {
-  var getRando = document.getElementById("rando");
-  getRando.addEventListener("click", function () {
-    window.open("https://en.wikipedia.org/wiki/Special:Random");
-  });
+// Here we can handle the event and display the query or search term with `handleInput` passing in the event, e
+// and assigning its value to target.value
+// This will display the value of the input, ie strings, to whatever container/form we have.
+// The issue now is handling the event when we get a response back from the Fetch API.
+// Want to move this handler inside the fetch call? Is that what it is?
+// Struggling with what pattern to use.
+function handleInput(e) {
+   query.textContent = e.target.value;
+}
+let fetchResults = (handleInput) => {
+  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${handleInput}`;
+  fetch(endpoint)
+  .then(response => response.json())
+  .then(data => {
+    const results = data.input.search;
+    results.JSONParse()
+  })
+  .catch(() => console.log('An error occurred'));
 }
 
-pullRandoArticle();
+const pullRandoArticle = () => {
+    const getRando = document.getElementById("rando");
+    getRando.addEventListener("click", function () {
+      window.open("https://en.wikipedia.org/wiki/Special:Random");
+    });
+  }
+  pullRandoArticle();
+
+  const clearInput = () => {
+    document.getElementById('search').value = null;
+  }

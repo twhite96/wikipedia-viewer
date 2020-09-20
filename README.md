@@ -2,9 +2,10 @@
 
 > An original app written in jQuery AJAX, refactored to use fetch and modern JavaScript APIs
 
+> 💡 I am going to finish this up but it is archived for now and will no longer get updates.
 
  [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) &nbsp; &nbsp; [![forthebadge](https://forthebadge.com/images/badges/designed-in-etch-a-sketch.svg)](https://forthebadge.com) &nbsp; &nbsp;
- [![Shields](https://img.shields.io/badge/Status-WIP-%2306d7d9?style=for-the-badge)](https://img.shields.io/badge/Status-WIP-%2306d7d9?style=for-the-badge&logo=appveyor)
+ [![Shields](https://img.shields.io/badge/Status-WIP-%2306d7d9?style=for-the-badge)](https://img.shields.io/badge/Status-WIP-%2306d7d9?style=for-the-badge) &nbsp; &nbsp; [![](https://img.shields.io/badge/No%20Maintenance%20Intended-X-red?style=for-the-badge)](http://unmaintained.tech/)
 
 
 ## 👆 First Iteration

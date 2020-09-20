@@ -19,13 +19,13 @@
         <span class="icon">
           <i class="fa fa-search fa"></i>
         </span>
-        <input type="search" id="search" placeholder="Search..." value="" />
+        <input type="search" id="search" placeholder="Search..." value="" incremental="true" />
       </div>
     </div>
     <div id="articles">
 
     </div>
-    <button id="rando">Rando Wiki</button>
+    <span><button id="rando">Rando Wiki</button><input type="reset" id="reset" value="Reset" onclick="clearInput()" /></span>
   </div>
   <!--   <script>function keyWasPressed(evt){ console.log(evt.keyCode) }</script> -->
   <script src="app.js"></script>
